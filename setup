@@ -1,0 +1,7 @@
+#! /bin/bash
+
+stow alias &
+stow bin &
+stow nvim &
+stow tmux &
+stow zsh

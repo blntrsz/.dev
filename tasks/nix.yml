@@ -1,0 +1,13 @@
+- name: Download Nix
+  get_url: 
+    url: https://nixos.org/nix/install
+    dest: /tmp/nix.sh
+    mode: 0755
+
+- name: Execute Nix
+  shell: /tmp/nix.sh --no-daemon
+
+- name: Remove Nix installer
+  file: 
+    path: /tmp/nix.sh 
+    state: absent

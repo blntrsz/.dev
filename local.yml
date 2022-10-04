@@ -1,0 +1,19 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    project: "{{ lookup('env', 'HOME') }}/p"
+    user: "{{ ansible_user_id }}"
+  pre_tasks:
+  - name: Update packages
+    become: true
+    ansible.builtin.package:
+      update_cache: yes
+      upgrade: yes
+    tags:
+      - install
+  tasks:
+    - include_tasks: tasks/git.yml
+    - include_tasks: tasks/zsh.yml
+    - include_tasks: tasks/neovim.yml
+    - include_tasks: tasks/dotfiles.yml

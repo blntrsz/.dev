@@ -1,0 +1,16 @@
+- name: Install
+  become: true
+  ansible.builtin.package:
+    name:
+      - zsh
+  tags:
+    - zsh
+    - install
+
+- name: Change user shell to zsh 
+  become: yes
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+  tags:
+    - zsh

@@ -1,0 +1,24 @@
+- name: Install
+  become: true
+  ansible.builtin.package:
+    name:
+      - git
+  tags:
+    - git
+    - install
+
+- name: Git personal setup email
+  git_config:
+    name: user.email
+    scope: global
+    value: "orosz.balint.97@gmail.com"
+  tags:
+  - git
+
+- name: Git personal setup name
+  git_config:
+    name: user.name
+    scope: global
+    value: "Balint Orosz"
+  tags:
+  - git

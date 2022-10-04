@@ -1,0 +1,96 @@
+- name: Installing stow
+  ansible.builtin.package: 
+    name: 
+      - stow
+      - tmux
+  become: true
+  tags:
+    - install
+    - dotfiles
+    - stow
+    - tmux
+
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:blntrsz/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Remove Zsh config
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.zsh"
+    state: absent
+  tags:
+    - install
+    - zsh
+
+- name: Remove bin config
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.local/bin"
+    state: absent
+  tags:
+    - install
+    - bin
+
+- name: Remove alias config
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.config/aliasrc"
+    state: absent
+  tags:
+    - install
+    - bin
+
+
+- name: Remove alias config
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.config/nvim"
+    state: absent
+  tags:
+    - install
+    - bin
+
+
+- name: Remove tmux 1
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.tmux-cht-command"
+    state: absent
+  tags:
+    - install
+    - bin
+
+- name: Remove tmux 2
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.tmux-cht-languages"
+    state: absent
+  tags:
+    - install
+    - bin
+
+- name: Remove tmux 3
+  become: true
+  file:
+    path:  "{{ lookup('env', 'HOME') }}/.tmux.conf"
+    state: absent
+  tags:
+    - install
+    - bin
+
+- name: Stow dotfiles
+  shell: cd $HOME/.dev && stow alias && stow zsh && stow nvim && stow bin && stow tmux
+  tags:
+    - install
+    - dotfiles
+    - stow
