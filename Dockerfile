@@ -11,7 +11,6 @@ COPY alias ./alias
 COPY bin ./bin
 COPY local.yml .
 COPY nvim ./nvim
-COPY setup ./setup
 COPY tasks ./tasks
 COPY tmux ./tmux
 COPY zsh ./zsh
