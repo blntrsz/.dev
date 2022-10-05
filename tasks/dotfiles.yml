@@ -16,8 +16,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.zsh"
     state: absent
   tags:
-    - install
     - zsh
+    - dotfiles
 
 - name: Remove bin config
   become: true
@@ -25,8 +25,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.local/bin"
     state: absent
   tags:
-    - install
     - bin
+    - dotfiles
 
 - name: Remove alias config
   become: true
@@ -34,8 +34,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.config/aliasrc"
     state: absent
   tags:
-    - install
-    - bin
+    - alias
+    - dotfiles
 
 
 - name: Remove alias config
@@ -44,8 +44,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.config/nvim"
     state: absent
   tags:
-    - install
-    - bin
+    - neovim
+    - dotfiles
 
 
 - name: Remove tmux 1
@@ -54,8 +54,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.tmux-cht-command"
     state: absent
   tags:
-    - install
-    - bin
+    - tmux
+    - dotfiles
 
 - name: Remove tmux 2
   become: true
@@ -63,8 +63,8 @@
     path:  "{{ lookup('env', 'HOME') }}/.tmux-cht-languages"
     state: absent
   tags:
-    - install
-    - bin
+    - tmux
+    - dotfiles
 
 - name: Remove tmux 3
   become: true
@@ -72,12 +72,11 @@
     path:  "{{ lookup('env', 'HOME') }}/.tmux.conf"
     state: absent
   tags:
-    - install
-    - bin
+    - tmux
+    - dotfiles
 
 - name: Stow dotfiles
   shell: cd $HOME/.dev && stow alias && stow zsh && stow nvim && stow bin && stow tmux
   tags:
-    - install
-    - dotfiles
     - stow
+    - dotfiles

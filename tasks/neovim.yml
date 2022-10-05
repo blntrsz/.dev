@@ -14,6 +14,8 @@
       - unzip
       - curl
       - doxygen
+      - ripgrep
+      - fzf
   tags:
     - install
     - neovim
@@ -43,6 +45,14 @@
 - name: Install neovim
   become: true
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  tags:
+    - install
+    - neovim
+
+
+- name: Install neovim
+  become: true
+  shell: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'silent PackerSync'"
   tags:
     - install
     - neovim

@@ -13,7 +13,7 @@
     scope: global
     value: "orosz.balint.97@gmail.com"
   tags:
-  - git
+    - git
 
 - name: Git personal setup name
   git_config:
@@ -21,4 +21,4 @@
     scope: global
     value: "Balint Orosz"
   tags:
-  - git
+    - git
