@@ -39,14 +39,6 @@ end)
 vnoremap("<A-j>", ":m '>+1<CR>==gv")
 vnoremap("<A-k>", ":m '<-2<CR>==gv")
 
-inoremap("<A-j>", function()
-	vim.cmd[[m .+1<CR>==]]
-end)
-
-inoremap("<A-k>", function()
-	vim.cmd[[m .-2<CR>==]]
-end)
-
 -- Horizontal shift
 
 nnoremap(">", ">>")
