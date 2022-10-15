@@ -13,7 +13,7 @@
     tags:
       - install
   tasks:
+    - include_tasks: tasks/neovim.yml
     - include_tasks: tasks/git.yml
     - include_tasks: tasks/zsh.yml
-    - include_tasks: tasks/neovim.yml
     - include_tasks: tasks/dotfiles.yml

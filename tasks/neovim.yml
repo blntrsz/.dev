@@ -36,6 +36,7 @@
   tags:
     - install
     - neovim
+
 - name: Build neovim
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 20"
   tags:
@@ -49,8 +50,16 @@
     - install
     - neovim
 
+- name: Clone Packer
+  ansible.builtin.git:
+    repo: 'https://github.com/wbthomason/packer.nvim.git'
+    dest: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    depth: 1
+  tags:
+    - install
+    - neovim
 
-- name: Install neovim
+- name: Install Packer dependencies
   become: true
   shell: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'silent PackerSync'"
   tags:
