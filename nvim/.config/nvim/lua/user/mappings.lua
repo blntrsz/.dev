@@ -1,11 +1,15 @@
 local Remap = require("utils")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
-local xnoremap = Remap.xnoremap
+-- local xnoremap = Remap.xnoremap
 local inoremap = Remap.inoremap
 
 -- Telescope
 local builtin = require('telescope.builtin')
+
+nnoremap("<C-p>", function()
+	builtin.find_files()
+end)
 
 nnoremap("<leader>ff", function()
 	builtin.find_files()
@@ -67,12 +71,29 @@ end)
 -- Git
 
 nnoremap("<leader>gs", function()
-	vim.cmd[[Neogit]]
+	require("neogit").open({ kind = "replace" })
+end)
+
+-- Harpoon
+local harpoon_ui = require("harpoon.ui")
+
+nnoremap("<leader>hh", function() require("harpoon.mark").add_file() end)
+nnoremap("<leader>ha", function() harpoon_ui.toggle_quick_menu() end)
+
+nnoremap("<A-1>", function() harpoon_ui.nav_file(1) end)
+nnoremap("<A-2>", function() harpoon_ui.nav_file(2) end)
+nnoremap("<A-3>", function() harpoon_ui.nav_file(3) end)
+nnoremap("<A-4>", function() harpoon_ui.nav_file(4) end)
+
+-- LSP
+
+nnoremap("<leader>pp", function()
+    vim.lsp.buf.format()
 end)
 
 -- Other
 
-nnoremap("<leader>h", function()
+nnoremap("<leader>l", function()
 	vim.cmd[[nohlsearch]]
 end)
 

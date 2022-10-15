@@ -14,7 +14,8 @@ M.lsp_server_coonfigs = {
 				}
 			}
 		}
-	}
+	},
+	tsserver = {}
 }
 
 return M
