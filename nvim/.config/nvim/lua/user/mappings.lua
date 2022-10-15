@@ -64,6 +64,11 @@ nnoremap("<leader>e", function()
 	vim.cmd[[Ex]]
 end)
 
+-- Git
+
+nnoremap("<leader>gs", function()
+	vim.cmd[[Neogit]]
+end)
 
 -- Other
 

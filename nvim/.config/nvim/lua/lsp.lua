@@ -1,13 +1,6 @@
 local lspconfig = require('lspconfig')
 local lsp = require('user.lsp').lsp_server_coonfigs
 local cmp = require('cmp')
-local neogit = require('neogit')
-
-neogit.setup {
-	integrations = {
-    diffview = true
-	}
-}
 
 cmp.setup({
 	snippet = {

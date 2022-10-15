@@ -5,4 +5,4 @@ end, 0)
 require "plugins"
 require "user.options"
 require "user.mappings"
-require "core.lsp"
+require "lsp"
