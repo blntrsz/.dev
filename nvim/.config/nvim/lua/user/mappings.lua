@@ -63,3 +63,11 @@ end)
 nnoremap("<leader>e", function()
 	vim.cmd[[Ex]]
 end)
+
+
+-- Other
+
+nnoremap("<leader>h", function()
+	vim.cmd[[nohlsearch]]
+end)
+
