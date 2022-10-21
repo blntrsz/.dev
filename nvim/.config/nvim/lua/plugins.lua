@@ -1,3 +1,5 @@
+local c = require('utils').config
+
 local ensure_packer = function()
 	local fn = vim.fn
 	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -13,40 +15,41 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+
+	-- LSP
 	use {
 		'williamboman/mason.nvim',
-		config = function()
-			require('mason').setup()
-		end
+		config = c('mason').setup()
 	}
+	use {
+		'williamboman/mason-lspconfig.nvim',
+		config = c('mason-lspconfig').setup({
+			automatic_installation = true
+		})
+	}
+	use 'neovim/nvim-lspconfig'
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
-	use 'neovim/nvim-lspconfig'
 	use {
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			local saga = require("lspsaga")
-
-			saga.init_lsp_saga()
-		end,
+		'nvim-treesitter/nvim-treesitter',
+		run = ":TSUpdate",
+		config = c('nvim-treesitter.configs').setup {
+			highlight = {
+				enabled = true
+			}
+		}
 	}
-	use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
 	use 'mfussenegger/nvim-dap'
 	use 'nvim-treesitter/nvim-treesitter-context'
 	use {
 		'numToStr/Comment.nvim',
-		config = function()
-			require('Comment').setup()
-		end
+		config = c('Comment').setup()
 	}
 	use {
 		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup()
-		end
+		config = c("nvim-autopairs").setup()
 	}
 
 	-- cmp
@@ -67,25 +70,59 @@ return require('packer').startup(function(use)
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim'
 		},
-		config = function()
-			require('neogit').setup {
-				integrations = {
-					diffview = true
-				}
+		config = c('neogit').setup {
+			integrations = {
+				diffview = true
 			}
-		end
+		}
 	}
 	use {
 		'lewis6991/gitsigns.nvim',
-		config = function()
-			require('gitsigns').setup()
-		end
+		config = c('gitsigns').setup()
+	}
+	use {
+		'dinhhuy258/git.nvim',
+		config = c('git').setup({
+			default_mappings = true, -- NOTE: `quit_blame` and `blame_commit` are still merged to the keymaps even if `default_mappings = false`
+
+			keymaps = {
+				-- Open blame window
+				blame = "<Leader>gb",
+				-- Close blame window
+				quit_blame = "q",
+				-- Open blame commit
+				blame_commit = "<CR>",
+				-- Open file/folder in git repository
+				browse = "<Leader>go",
+				-- Open pull request of the current branch
+				open_pull_request = "<Leader>gp",
+				-- Create a pull request with the target branch is set in the `target_branch` option
+				create_pull_request = "<Leader>gn",
+				-- Opens a new diff that compares against the current index
+				diff = "<Leader>gd",
+				-- Close git diff
+				diff_close = "<Leader>gD",
+				-- Revert to the specific commit
+				revert = "<Leader>gr",
+				-- Revert the current file to the specific commit
+				revert_file = "<Leader>gR",
+			},
+			-- Default target branch when create a pull request
+			target_branch = "master",
+		})
 	}
 
-	for key, plugin in pairs(require("user.plugins")) do
-		if type(key) == "string" and not plugin[1] then plugin[1] = key end
-		use(plugin)
-	end
+	use 'folke/tokyonight.nvim'
+	use 'ThePrimeagen/harpoon'
+	use {
+		'olivercederborg/poimandres.nvim',
+		config = c('poimandres').setup()
+	}
+	use({
+		"ckipp01/stylua-nvim",
+		run = "cargo install stylua",
+		config = c("stylua-nvim").setup { config_file = "stylua.toml" }
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

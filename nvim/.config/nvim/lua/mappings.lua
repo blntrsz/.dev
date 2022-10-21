@@ -2,7 +2,7 @@ local Remap = require("utils")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 -- local xnoremap = Remap.xnoremap
-local inoremap = Remap.inoremap
+-- local inoremap = Remap.inoremap
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -28,12 +28,14 @@ nnoremap("<leader>fh", function()
 	builtin.help_tags()
 end)
 
+-- move commands
+
 nnoremap("<A-j>", function()
-	vim.cmd[[m .+1<CR>==]]
+	vim.cmd [[m .+1<CR>==]]
 end)
 
 nnoremap("<A-k>", function()
-	vim.cmd[[m .-2<CR>==]]
+	vim.cmd [[m .-2<CR>==]]
 end)
 
 vnoremap("<A-j>", ":m '>+1<CR>==gv")
@@ -52,18 +54,22 @@ vnoremap("<", "<gv")
 nnoremap("<leader>r", function()
 	if pcall(vim.cmd, "Rex") then
 	else
-		vim.cmd[[Ex]]
+		vim.cmd [[Ex]]
 	end
 end)
 
 nnoremap("<leader>e", function()
-	vim.cmd[[Ex]]
+	vim.cmd [[Ex]]
 end)
 
 -- Git
 
 nnoremap("<leader>gs", function()
 	require("neogit").open({ kind = "replace" })
+end)
+
+nnoremap("<leader>gh", function()
+	vim.cmd [[Gitsigns preview_hunk]]
 end)
 
 -- Harpoon
@@ -80,12 +86,12 @@ nnoremap("<A-4>", function() harpoon_ui.nav_file(4) end)
 -- LSP
 
 nnoremap("<leader>pp", function()
-    vim.lsp.buf.format()
+	vim.lsp.buf.format()
 end)
 
 -- Other
 
 nnoremap("<leader>l", function()
-	vim.cmd[[nohlsearch]]
+	vim.cmd [[nohlsearch]]
 end)
 
