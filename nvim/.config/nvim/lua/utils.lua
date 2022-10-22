@@ -19,4 +19,8 @@ M.vnoremap = bind("v")
 M.xnoremap = bind("x")
 M.inoremap = bind("i")
 
+M.setup = function(name, config)
+  require(name).setup(config)
+end
+
 return M
