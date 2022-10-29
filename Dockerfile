@@ -2,7 +2,7 @@ FROM ubuntu
 
 RUN apt upgrade -y && apt update -y
 
-RUN apt-get install ansible -y
+RUN apt-get install ansible git -y
 
 RUN mkdir /root/.dev
 WORKDIR /root/.dev

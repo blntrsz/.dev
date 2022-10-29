@@ -16,7 +16,7 @@ end
 local nnoremap = bind("n")
 local vnoremap = bind("v")
 -- local xnoremap = bind("x")
-local inoremap = bind("i")
+-- local inoremap = bind("i")
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -109,3 +109,58 @@ nnoremap("<leader>l", function()
 	vim.cmd [[nohlsearch]]
 end)
 
+
+-- Lsp
+
+nnoremap("gh", function()
+  vim.cmd [[Lspsaga lsp_finder]]
+end)
+
+nnoremap("ca", function()
+  vim.cmd [[Lspsaga code_action]]
+end)
+
+nnoremap("gr", function()
+  vim.cmd [[Lspsaga rename]]
+end)
+nnoremap("gd", function()
+  vim.cmd [[Lspsaga peek_definition]]
+end)
+
+nnoremap("cd", function()
+  vim.cmd [[Lspsaga show_line_diagnostics]]
+end)
+
+nnoremap("<leader>cd", function()
+  vim.cmd [[Lspsaga show_cursor_diagnostics]]
+end)
+
+nnoremap("[e", function()
+  vim.cmd [[Lspsaga diagnostic_jump_prev]]
+end)
+nnoremap("]e", function()
+  vim.cmd [[Lspsaga diagnostic_jump_next]]
+end)
+
+-- Only jump to error
+nnoremap("[E", function()
+  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { silent = true })
+nnoremap("]E", function()
+  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { silent = true })
+
+-- Outline
+nnoremap("<leader>o", function()
+  vim.cmd [[LSoutlineToggle]]
+end)
+
+-- Hover Doc
+nnoremap("K", function()
+  vim.cmd [[Lspsaga hover_doc]]
+end)
+
+-- Float terminal
+nnoremap("<A-d>", function()
+  vim.cmd [[Lspsaga open_floaterm]]
+end)
