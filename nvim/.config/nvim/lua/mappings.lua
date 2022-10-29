@@ -1,8 +1,22 @@
-local Remap = require("utils")
-local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
--- local xnoremap = Remap.xnoremap
--- local inoremap = Remap.inoremap
+-- Utils
+local function bind(mode, options)
+	options = options or { noremap = true }
+
+	return function(lhs, rhs, opts)
+		opts = vim.tbl_extend("force",
+			options,
+			opts or {}
+		)
+
+		vim.keymap.set(mode, lhs, rhs, opts)
+	end
+end
+
+-- local nmap = bind("n", { noremap = false })
+local nnoremap = bind("n")
+local vnoremap = bind("v")
+-- local xnoremap = bind("x")
+local inoremap = bind("i")
 
 -- Telescope
 local builtin = require('telescope.builtin')

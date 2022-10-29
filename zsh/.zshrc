@@ -106,3 +106,7 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 export PNPM_HOME="/home/balint/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# fnm
+export PATH=/root/.fnm:$PATH
+eval "`fnm env`"

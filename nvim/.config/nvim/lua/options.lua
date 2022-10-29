@@ -1,5 +1,6 @@
 vim.cmd [[colorscheme poimandres]]
 
+-- Utils
 local opt = vim.opt
 local g = vim.g
 
@@ -20,10 +21,6 @@ opt.shiftwidth = indent
 opt.scrolloff = 8
 
 opt.completeopt = { "menu", "menuone", "noselect" }
-
-
-
-vim.cmd("autocmd!")
 
 vim.scriptencoding = 'utf-8'
 opt.encoding = 'utf-8'

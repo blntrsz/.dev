@@ -1,4 +1,6 @@
-local setup = require('utils').setup
+local setup = function(name, config)
+  require(name).setup(config)
+end
 
 local ensure_packer = function()
   local fn = vim.fn
@@ -117,6 +119,13 @@ return require('packer').startup(function(use)
     'olivercederborg/poimandres.nvim',
     config = setup('poimandres')
   }
+
+
+  -- Prettier & Eslint
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
+  use 'MunifTanjim/eslint.nvim'
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
