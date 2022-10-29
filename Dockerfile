@@ -2,6 +2,8 @@ FROM ubuntu
 
 RUN apt upgrade -y && apt update -y
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get install ansible git -y
 
 RUN mkdir /root/.dev
