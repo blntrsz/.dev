@@ -64,7 +64,8 @@ cmp.setup.cmdline(':', {
   })
 })
 
-local on_attach = function()
+local on_attach = function(bufnr)
+      require "lsp_signature".on_attach({}, bufnr)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

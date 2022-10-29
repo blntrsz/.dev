@@ -41,6 +41,10 @@ return require('packer').startup(function(use)
         })
     end,
   })
+  use {
+    "ray-x/lsp_signature.nvim",
+    config = setup('mason-lspconfig')
+  }
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -144,6 +148,10 @@ return require('packer').startup(function(use)
   use {
     "windwp/nvim-autopairs",
     config = setup("nvim-autopairs")
+  }
+  use {
+    'simrat39/symbols-outline.nvim',
+    config = setup("symbols-outline")
   }
 
   -- cmp

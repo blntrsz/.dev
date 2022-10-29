@@ -112,7 +112,7 @@ end)
 
 -- Lsp
 
-nnoremap("gh", function()
+nnoremap("gd", function()
   vim.cmd [[Lspsaga lsp_finder]]
 end)
 
@@ -123,7 +123,7 @@ end)
 nnoremap("gr", function()
   vim.cmd [[Lspsaga rename]]
 end)
-nnoremap("gd", function()
+nnoremap("gh", function()
   vim.cmd [[Lspsaga peek_definition]]
 end)
 
