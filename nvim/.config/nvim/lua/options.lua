@@ -1,4 +1,5 @@
-vim.cmd [[colorscheme poimandres]]
+-- vim.cmd [[colorscheme catppuccin]]
+vim.g.catppuccin_flavour = "mocha"
 
 -- Utils
 local opt = vim.opt

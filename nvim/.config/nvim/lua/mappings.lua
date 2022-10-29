@@ -116,7 +116,7 @@ nnoremap("gh", function()
   vim.cmd [[Lspsaga lsp_finder]]
 end)
 
-nnoremap("ca", function()
+nnoremap("ga", function()
   vim.cmd [[Lspsaga code_action]]
 end)
 
